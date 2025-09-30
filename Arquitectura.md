@@ -89,6 +89,8 @@ Antes de profundizar en software, necesitamos una base de datos sólida:
 
 Usaremos el proyecto del BID “Apoyo a la gestión digital fiscal y aduanera en América Latina y el Caribe” como caso guía. Sí, es este caso: RG‑T4185, con foco en la Factura Electrónica de Comercio Exterior (FE‑X), buscando digitalización, trazabilidad e integridad del comercio, y eficiencia en la recaudación.
 
+web: https://www.iadb.org/es/proyecto/RG-T4185
+
 - Datos principales del proyecto (según BID)
   - Número de proyecto: RG‑T4185. Etapa: Implementación.
   - Aprobación: 30 nov 2022. Cooperación Técnica, sector Ciencia y Tecnología.
