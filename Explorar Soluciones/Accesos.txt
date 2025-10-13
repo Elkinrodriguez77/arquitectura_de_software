@@ -1,0 +1,20 @@
+Simulador git:
+
+https://webutility.io/git-simulator-online
+
+Graph Git:
+
+https://git-graph-creator.netlify.app/
+
+Simulador SQL:
+
+https://sqliteonline.com/
+
+Notebook MD:
+
+https://editormarkdown.com/
+
+Sintaxis MD:
+
+https://docs.github.com/es/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
+
