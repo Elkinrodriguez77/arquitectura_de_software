@@ -1,3 +1,5 @@
+Presentación: https://www.canva.com/design/DAG0YJd7LUc/a6c-uzPe7o6fJ4bEmVLOsg/view?utm_content=DAG0YJd7LUc&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h198606a50b
+
 ### Arquitectura de Software: Guía viva para estudiantes
 
 Esta guía está diseñada como un espacio de aprendizaje teórico–práctico en constante evolución. Parte desde el rol y responsabilidades del arquitecto/a de software y avanza hacia prácticas modernas, herramientas, metodologías y el uso de IA (incl. NotebookLM) para potenciar el trabajo arquitectónico. Usaremos diferentes caso, como el proyecto RG‑T4185 del Banco Interamericano de Desarrollo (BID) sobre la Factura Electrónica de Comercio Exterior (FE‑X) para aprender haciendo.
