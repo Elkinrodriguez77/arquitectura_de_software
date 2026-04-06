@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="data:,">
+    <title>Cafetería Digital</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding-top: 50px; background: #f4ece1; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; background: #6f4e37; color: white; border: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>☕ Mi Cafetería Digital</h1>
+    <p>¿Qué deseas pedir?</p>
+    <button onclick="hacerPedido('espresso')">Pedir Espresso</button>
+    <button onclick="hacerPedido('latte')">Pedir Latte</button>
+
+    <div id="resultado" style="margin-top: 20px; font-weight: bold;"></div>
+
+    <script>
+        function hacerPedido(tipo) {
+            // Estilo Arquitectónico: Cliente-Servidor (Petición HTTP)
+            fetch(`/pedir/${tipo}`)
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('resultado').innerText = 
+                        `${data.mensaje} (Ingredientes: ${data.ingredientes})`;
+                });
+        }
+    </script>
+</body>
+</html>

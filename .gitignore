@@ -4,3 +4,41 @@ Omitir en git/
 
 Arquitectura de Software.pdf
 
+
+# --- Entornos Virtuales ---
+# Bloquea cualquier carpeta que sea un entorno virtual, 
+# sin importar qué tan profundo esté en las subcarpetas.
+**/solid_ent/
+**/venv/
+**/.venv/
+**/env/
+**/ENV/
+
+# --- Archivos de sistema y Python ---
+# Bloquea archivos compilados y cachés
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# --- Distribución / Empaquetado ---
+bin/
+build/
+develop-eggs/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# --- Otros ---
+.vscode/
+.idea/
+*.log
+
