@@ -18,7 +18,7 @@ El patrón Facade nos dice: "Crea una fachada simple (el Restaurante) que oculte
 
 El principio Abierto/Cerrado (Open/Closed Principle) nos dice: "Las entidades de software deben estar abiertas para su extensión, pero cerradas para su modificación".
 
-Suena a contradicción, ¿verdad? Volvamos a tu respuesta anterior. Dijiste: "Modifico solo Cajero". Si agregamos PayPal y luego Criptomonedas modificando el Cajero directamente, nuestro código se vería así:
+Suena a contradicción, ¿verdad? Vamos a la pregunta planteada. 
 
 ```python
 class Cajero:
