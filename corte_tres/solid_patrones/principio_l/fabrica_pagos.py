@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-# --- 1. ESTRATEGIAS DE PAGO (OCP y LSP) ---
+# --- 1. ESTRATEGIAS DE PAGO (LSP se cumple aquí) ---
 class MetodoPago(ABC):
     @abstractmethod
     def pagar(self, monto):
@@ -18,18 +18,40 @@ class PagoNequi(MetodoPago):
     def pagar(self, monto):
         print(f"📱 Cobrando ${monto} con Nequi")
 
-# --- 2. FÁBRICA DE PAGOS (Patrón Factory) ---
+# 🌟 NUEVO PAGO: Creamos la clase
+class PagoBitcoin(MetodoPago):
+    def pagar(self, monto):
+        print(f"🪙 Cobrando ${monto} con Bitcoin")
+
+# --- 2. FÁBRICA DE PAGOS  ---
 class FabricaPagos:
-    @staticmethod
-    def crear_pago(tipo_pago: str):
-        if tipo_pago.lower() == "tarjeta":
-            return PagoTarjeta()
-        elif tipo_pago.lower() == "paypal":
-            return PagoPayPal()
-        elif tipo_pago.lower() == "nequi":
-            return PagoNequi()
+    # Diccionario que asocia: Número -> (Nombre para el menú, Clase a instanciar)
+    _metodos = {
+        "1": ("Tarjeta", PagoTarjeta),
+        "2": ("PayPal", PagoPayPal),
+        "3": ("Nequi", PagoNequi)
+    }
+
+    @classmethod
+    def registrar_nuevo_metodo(cls, opcion_numero: str, nombre: str, clase_metodo):
+        """Permite agregar nuevos pagos dinámicamente sin modificar esta clase"""
+        cls._metodos[opcion_numero] = (nombre, clase_metodo)
+
+    @classmethod
+    def mostrar_menu(cls):
+        opciones = [f"{num}. {datos[0]}" for num, datos in cls._metodos.items()]
+        return " | ".join(opciones)
+
+    @classmethod
+    def crear_pago(cls, opcion: str):
+        if opcion in cls._metodos:
+            clase_pago = cls._metodos[opcion][1]
+            return clase_pago() # Retorna la instancia de la clase
         else:
-            raise ValueError(f"❌ El método de pago '{tipo_pago}' no existe en nuestra fábrica.")
+            raise ValueError(f"❌ La opción '{opcion}' no es válida.")
+
+# 🌟 REGISTRAMOS EL NUEVO PAGO EN LA FÁBRICA
+FabricaPagos.registrar_nuevo_metodo("4", "Bitcoin", PagoBitcoin)
 
 # --- 3. ESPECIALISTAS (SRP - Responsabilidad Única) ---
 class Cocinero:
@@ -41,6 +63,7 @@ class Bodeguero:
         print(f"📦 Descontando ingredientes de {plato}")
 
 class Cajero:
+    # 🌟 LSP en acción: El cajero recibe la abstracción (MetodoPago), no la clase concreta.
     def procesar_pago(self, monto, estrategia_pago: MetodoPago):
         estrategia_pago.pagar(monto)
 
@@ -62,19 +85,17 @@ if __name__ == "__main__":
     print("--- Bienvenidos al Restaurante SOLID ---")
     mi_restaurante = Restaurante()
     
-    # Usamos un ciclo simple para atender a varios clientes
     while True:
-        seleccion_cliente = input("Ingrese método de pago (tarjeta/paypal/nequi) o 'salir' para cerrar: ")
+        print(f"\n{FabricaPagos.mostrar_menu()} | S. Salir")
+        seleccion_cliente = input("Ingrese el número de su método de pago: ")
         
-        if seleccion_cliente.lower() == 'salir':
+        if seleccion_cliente.lower() == 's':
             print("Cerrando el restaurante. ¡Hasta pronto!")
             break
             
         try:
-            # Intentamos crear el pago con lo que el usuario escribió
             metodo_elegido = FabricaPagos.crear_pago(seleccion_cliente)
             mi_restaurante.atender_cliente("Tacos", 12, metodo_elegido)
         except ValueError as error:
-            # Si la fábrica lanza un error, lo mostramos sin detener el programa
             print(error)
-            print("Por favor, intente con un método válido.\n")
+            print("Por favor, intente con una opción válida.")
